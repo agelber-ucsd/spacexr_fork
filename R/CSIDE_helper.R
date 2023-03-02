@@ -81,7 +81,7 @@ construct_hess_fast <- function(X1,X2,lambda,lambda_k, K, d1_d2) {
     H2[(L1+1):(L1+L2*K),1:L1] <- t(H2_12)
   }
   X2_Q <- sweep3t_all(tX2, tdl, K)
-  if(nrow(X2_Q)>1) {
+  if(!is.null(dim(X2_Q))) {
   grad_2 <- matrix(rowSums(X2_Q),dim(X2)[2],K) } else  {
      grad_2 <- matrix(sum(X2_Q),dim(X2)[2],K) }
   H2m <- X2_Q %*% X2
